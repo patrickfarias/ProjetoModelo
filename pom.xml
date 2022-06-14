@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>br.com.eugenesistemas.projetomodelo</groupId>
 	<artifactId>projetomodelo</artifactId>
@@ -19,7 +19,16 @@
 		<splunk.library.version>1.6.2</splunk.library.version>
 		<token.manager.version>1.1.1-9</token.manager.version>
 		<chekstyle-maven-plugin.version>3.0.0</chekstyle-maven-plugin.version>
+		<evosuiteVersion>1.0.6</evosuiteVersion>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<url>http://jcenter.bintray.com/</url>
+		</repository>
+	</repositories>
+
 
 	<dependencies>
 		<dependency>
@@ -57,11 +66,12 @@
 		</dependency>
 		-->
 
-
-
-
-
-
+		<dependency>
+			<groupId>org.evosuite</groupId>
+			<artifactId>evosuite-standalone-runtime</artifactId>
+			<version>${evosuiteVersion}</version>
+			<scope>test</scope>
+		</dependency>
 
 
 		<dependency>
@@ -76,12 +86,12 @@
 			</exclusions>
 		</dependency>
 
-		<!-- Lombok -->
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.10</version>
-			<scope>compile</scope> <optional>true</optional>
+			<version>1.18.12</version>
+			<scope>provided</scope>
 		</dependency>
 
 
@@ -158,6 +168,35 @@
 	<build>
 		<finalName>SE-VD</finalName>
 		<plugins>
+
+
+					<plugin>
+						<groupId>org.evosuite.plugins</groupId>
+						<artifactId>evosuite-maven-plugin</artifactId>
+						<version>${evosuiteVersion}</version>
+						<executions><execution>
+							<goals> <goal> prepare </goal> </goals>
+							<phase> process-test-classes </phase>
+						</execution></executions>
+					</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
+				<configuration>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>org.evosuite.runtime.InitializingListener</value>
+						</property>
+					</properties>
+				</configuration>
+			</plugin>
+
+
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
