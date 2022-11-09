@@ -15,19 +15,20 @@
 	<description>Projeto Modelo para Start com Spring</description>
 
 	<properties>
-		<java.version>1.8</java.version><!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+		<java.version>1.8</java.version>
+		<!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
 		<splunk.library.version>1.6.2</splunk.library.version>
 		<token.manager.version>1.1.1-9</token.manager.version>
 		<chekstyle-maven-plugin.version>3.0.0</chekstyle-maven-plugin.version>
-		<evosuiteVersion>1.0.6</evosuiteVersion>
+<!--		<evosuiteVersion>1.0.6</evosuiteVersion>-->
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>jcenter</id>
-			<url>http://jcenter.bintray.com/</url>
-		</repository>
-	</repositories>
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>jcenter</id>-->
+<!--			<url>http://jcenter.bintray.com/</url>-->
+<!--		</repository>-->
+<!--	</repositories>-->
 
 
 	<dependencies>
@@ -38,6 +39,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- PASS
@@ -56,7 +63,9 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId><scope>runtime</scope><optional>true</optional>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
 		</dependency>
 		<!--
 		<dependency>
@@ -64,7 +73,7 @@
 			<artifactId>splunk-library-javalogging</artifactId>
 			<version>${splunk.library.version}</version>
 		</dependency>
-		-->
+
 
 		<dependency>
 			<groupId>org.evosuite</groupId>
@@ -72,25 +81,14 @@
 			<version>${evosuiteVersion}</version>
 			<scope>test</scope>
 		</dependency>
+-->
 
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.12</version>
+			<version>1.18.24</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -136,15 +134,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13</version>
-			<scope>test</scope>
-		</dependency>
-
-
 
 
 
@@ -170,30 +159,30 @@
 		<plugins>
 
 
-					<plugin>
-						<groupId>org.evosuite.plugins</groupId>
-						<artifactId>evosuite-maven-plugin</artifactId>
-						<version>${evosuiteVersion}</version>
-						<executions><execution>
-							<goals> <goal> prepare </goal> </goals>
-							<phase> process-test-classes </phase>
-						</execution></executions>
-					</plugin>
+<!--					<plugin>-->
+<!--						<groupId>org.evosuite.plugins</groupId>-->
+<!--						<artifactId>evosuite-maven-plugin</artifactId>-->
+<!--						<version>${evosuiteVersion}</version>-->
+<!--						<executions><execution>-->
+<!--							<goals> <goal> prepare </goal> </goals>-->
+<!--							<phase> process-test-classes </phase>-->
+<!--						</execution></executions>-->
+<!--					</plugin>-->
 
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.17</version>
-				<configuration>
-					<properties>
-						<property>
-							<name>listener</name>
-							<value>org.evosuite.runtime.InitializingListener</value>
-						</property>
-					</properties>
-				</configuration>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-surefire-plugin</artifactId>-->
+<!--				<version>2.17</version>-->
+<!--				<configuration>-->
+<!--					<properties>-->
+<!--						<property>-->
+<!--							<name>listener</name>-->
+<!--							<value>org.evosuite.runtime.InitializingListener</value>-->
+<!--						</property>-->
+<!--					</properties>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 
 
 
